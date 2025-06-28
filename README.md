@@ -10,4 +10,6 @@ REG requires only minimal modifications—just a one-line change in the reverse 
 - For the ImageNet experiments in the paper, we forked [DiT](https://github.com/facebookresearch/DiT) and [EDMv2](https://github.com/NVlabs/edm2) and applied our modifications.
 - For the text-to-image experiments, we modify the source code of Hugging Face's `diffusers` library.
 
-Please refer to each subfolders for detailed instructions.
+Please refer to each subfolders for detailed instructions. There might be light typos in the code, because I try to provide minimal files to reproduce our experiments for clarity. If you encounter any problems, please feel free to create an issue or contact me at zhengqi@mit.edu.
+
+
