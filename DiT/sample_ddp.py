@@ -13,7 +13,7 @@ For a simple single-GPU/CPU sampling script, see sample.py.
 """
 import torch
 import torch.distributed as dist
-from models import DiT_models
+from DiT.forward_with_cfg import DiT_models
 from download import find_model
 from diffusion import create_diffusion
 from diffusers.models import AutoencoderKL
@@ -31,34 +31,26 @@ def construct_cfg(cfg_type: str, cfg_scale: Optional[float] = 0.0, *args) -> dic
     cfg_param = {'cfg_scale': cfg_scale, 'cfg_type': cfg_type}
     if cfg_type == 'original':
         pass
-    elif cfg_type == 'original4':
-        pass
     elif cfg_type == 'intervalt':
         assert len(args) == 2
         cfg_param['intervalt'] = (float(args[0]), float(args[1]))
     elif cfg_type == 'linear':
         assert len(args) == 1
         cfg_param['end_scale'] = float(args[0])
-    elif cfg_type == 'scalar':
-        cfg_param['alpha_bar'] = None
-    elif cfg_type == 'scalar4':
-        cfg_param['alpha_bar'] = None
     elif cfg_type == 'cosine':
         assert len(args) == 1
         cfg_param['s'] = float(args[0])
-    elif cfg_type == 'gradintervalt':
+    elif cfg_type == 'reg_original':
+        cfg_param['alpha_bar'] = None
+    elif cfg_type == 'reg_intervalt':
         cfg_param['alpha_bar'] = None
         assert len(args) == 2
         cfg_param['intervalt'] = (float(args[0]), float(args[1]))
-    elif cfg_type == 'gradintervalt4':
-        cfg_param['alpha_bar'] = None
-        assert len(args) == 2
-        cfg_param['intervalt'] = (float(args[0]), float(args[1]))
-    elif cfg_type == 'gradcosine':
+    elif cfg_type == 'reg_cosine':
         cfg_param['alpha_bar'] = None
         assert len(args) == 1
         cfg_param['s'] = float(args[0])
-    elif cfg_type == 'gradlinear':
+    elif cfg_type == 'reg_linear':
         cfg_param['alpha_bar'] = None
         assert len(args) == 1
         cfg_param['end_scale'] = float(args[0])

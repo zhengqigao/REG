@@ -15,7 +15,7 @@ Our code builds upon DiT and introduces modifications to support various types o
     torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py --model DiT-XL/2 --num-fid-samples 50000 --cfg-scale 1.5 --cfg-type original --image-size 256 --sample-dir test --per-proc-batch-size 8
 
     # Vanilla CFG + REG with cfg-weight=1.5
-    torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py --model DiT-XL/2 --num-fid-samples 50000 --cfg-scale 1.5 --cfg-type reg --image-size 256 --sample-dir test --per-proc-batch-size 8
+    torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py --model DiT-XL/2 --num-fid-samples 50000 --cfg-scale 1.5 --cfg-type reg_original --image-size 256 --sample-dir test --per-proc-batch-size 8
     ```
 
 5. The above command will generate 50K images stored in your local folder `test`. After the command finishes, FID and IS evaluation can be performed using ADM's evaluation suite. Detailed instructions are available in both the [DiT repository](https://github.com/facebookresearch/DiT) and the original [ADM repository](https://github.com/openai/guided-diffusion/tree/main/evaluations).
