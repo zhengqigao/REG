@@ -17,7 +17,6 @@ from DiT.forward_with_cfg import DiT_models
 from download import find_model
 from diffusion import create_diffusion
 from diffusers.models import AutoencoderKL
-from diffusion.cfg_utils import construct_cfg
 from tqdm import tqdm
 import os
 from PIL import Image

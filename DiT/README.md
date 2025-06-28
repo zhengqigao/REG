@@ -11,11 +11,18 @@ Our code builds upon DiT and introduces modifications to support various types o
 4. Run the experiment using the following command:
 
     ```shell
-    # Vanilla CFG with cfg-weight=1.5
+    # N is the number of GPUs available on one node.
+    # Vanilla CFG
     torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py --model DiT-XL/2 --num-fid-samples 50000 --cfg-scale 1.5 --cfg-type original --image-size 256 --sample-dir test --per-proc-batch-size 8
 
-    # Vanilla CFG + REG with cfg-weight=1.5
+    # Vanilla CFG + REG
     torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py --model DiT-XL/2 --num-fid-samples 50000 --cfg-scale 1.5 --cfg-type reg_original --image-size 256 --sample-dir test --per-proc-batch-size 8
+
+    # Interval CFG
+    torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py --model DiT-XL/2 --num-fid-samples 50000 --cfg-scale 1.5 --cfg-type intervalt --image-size 256 --sample-dir test --per-proc-batch-size 8 --cfg-param 205 502
+
+    # Interval CFG + REG
+    torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py --model DiT-XL/2 --num-fid-samples 50000 --cfg-scale 1.5 --cfg-type reg_intervalt --image-size 256 --sample-dir test --per-proc-batch-size 8 --cfg-param 205 502
     ```
 
 5. The above command will generate 50K images stored in your local folder `test`. After the command finishes, FID and IS evaluation can be performed using ADM's evaluation suite. Detailed instructions are available in both the [DiT repository](https://github.com/facebookresearch/DiT) and the original [ADM repository](https://github.com/openai/guided-diffusion/tree/main/evaluations).
